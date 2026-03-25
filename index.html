@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toothless™ Elite - Agence Digitale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* 🎨 DESIGN SYSTEM ULTRA PREMIUM (Variables CSS) */
+        :root {
+            --primary: #4F46E5; /* Indigo Pro */
+            --primary-hover: #4338CA;
+            --dark: #0F172A; /* Slate 900 */
+            --light: #F8FAFC; /* Slate 50 */
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* 👑 HEADER / NAVIGATION (Glassmorphism) */
+        .header {
+            position: sticky;
+            top: 0; z-index: 100;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .container {
+            width: 90%; max-width: 1200px;
+            margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem; font-weight: 800;
+            background: linear-gradient(45deg, var(--dark), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            cursor: pointer;
+            letter-spacing: -1px;
+        }
+
+        .navigation ul {
+            display: flex; gap: 2rem; list-style: none; align-items: center;
+        }
+
+        .navigation a {
+            text-decoration: none; color: var(--dark);
+            font-weight: 600; font-size: 0.95rem;
+            position: relative; padding: 0.5rem 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .navigation a::after {
+            content: ''; position: absolute;
+            bottom: 0; left: 0; width: 0; height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .navigation a:hover::after, .navigation a.active::after {
+            width: 100%;
+        }
+
+        .navigation a.active { color: var(--primary); }
+
+        .btn-admin {
+            background: var(--dark); color: white !important;
+            padding: 0.6rem 1.2rem; border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.2);
+        }
+
+        .btn-admin::after { display: none; }
+        .btn-admin:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15, 23, 42, 0.3); }
+
+        /* 🎇 MAIN CONTENT & ANIMATIONS */
+        .main-content {
+            flex: 1; padding: 5rem 0;
+        }
+
+        .main-content .container { flex-direction: column; align-items: flex-start; }
+
+        .page-animate {
+            animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            width: 100%;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-title {
+            font-size: 3.5rem; font-weight: 800; margin-bottom: 1.5rem;
+            color: var(--dark); line-height: 1.2;
+        }
+
+        .page-description {
+            font-size: 1.2rem; line-height: 1.8; color: #475569; 
+            margin-bottom: 3rem; max-width: 800px;
+        }
+
+        /* 📦 SERVICES GRID */
+        .services-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem; width: 100%;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            position: relative; overflow: hidden;
+        }
+
+        .service-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--primary), #818CF8);
+            transform: scaleX(0); transform-origin: left; transition: var(--transition);
+        }
+
+        .service-card:hover { transform: translateY(-10px); }
+        .service-card:hover::before { transform: scaleX(1); }
+
+        .service-card h4 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--dark); }
+        .service-card p { color: #64748B; line-height: 1.6; margin-bottom: 1.5rem; }
+        .service-card .price { font-size: 1.8rem; font-weight: 800; color: var(--primary); margin: 0; }
+
+        /* 📝 CONTACT FORM */
+        .contact-section {
+            width: 100%; max-width: 600px; margin: 0 auto;
+            background: white; border-radius: var(--radius);
+            padding: 3rem; box-shadow: var(--shadow);
+        }
+
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label {
+            display: block; margin-bottom: 0.5rem; font-weight: 600; color: #475569; font-size: 0.9rem;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 1rem;
+            border: 2px solid #E2E8F0; border-radius: 10px;
+            font-family: inherit; font-size: 1rem;
+            transition: var(--transition); background: #F8FAFC;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none; border-color: var(--primary); background: white;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+
+        .btn-submit {
+            width: 100%; background: var(--primary); color: white;
+            padding: 1rem; border: none; border-radius: 10px;
+            font-size: 1.1rem; font-weight: 600; cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-submit:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2); }
+
+        /* ✅ ALERTS */
+        .alert {
+            padding: 1rem 1.5rem; border-radius: 10px; margin-bottom: 2rem; font-weight: 600;
+            display: flex; align-items: center; gap: 10px; animation: fadeIn 0.3s ease-out;
+        }
+        .alert-success { background: #DCFCE7; color: #166534; border: 1px solid #BBF7D0; }
+
+        /* 🏁 FOOTER */
+        .footer {
+            background: var(--dark); color: #94A3B8;
+            padding: 2rem 0; text-align: center; margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1 onclick="loadPage('home')">Toothless<span style="color:var(--primary);">.com</span></h1>
+            </div>
+            <nav class="navigation">
+                <ul>
+                    <li><a onclick="loadPage('home')" id="nav-home" class="active">Accueil</a></li>
+                    <li><a onclick="loadPage('services')" id="nav-services">Services</a></li>
+                    <li><a onclick="loadPage('about')" id="nav-about">À Propos</a></li>
+                    <li><a onclick="loadPage('contact')" id="nav-contact">Contact</a></li>
+                    <li><a href="#" class="btn-admin" onclick="alert('Espace admin (Backend requis)')"><i class="fas fa-lock"></i> Espace Pro</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container" id="app-content">
+            </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container" style="flex-direction: column; gap: 10px;">
+            <div class="logo">
+                <h1 style="font-size: 1.2rem; filter: grayscale(1) brightness(2);">Toothless<span style="color:var(--primary);">.com</span></h1>
+            </div>
+            <p>&copy; 2026 Toothless Elite. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. BASE DE DONNÉES SIMULÉE (Frontend Data)
+        const db = {
+            home: {
+                title: "Bienvenue sur l'Elite.",
+                content: "Nous concevons des expériences numériques exceptionnelles. Pas de compromis, uniquement la perfection."
+            },
+            about: {
+                title: "Notre Vision.",
+                content: "Toothless est né d'une idée simple : allier design premium et performances extrêmes. Nous sommes une agence digitale repoussant les limites du web moderne."
+            },
+            services: [
+                { name: "Développement Web", desc: "Création d'applications web sur mesure, ultra-rapides et hautement sécurisées.", price: "1 500 €" },
+                { name: "Design UI/UX", desc: "Des interfaces 'Pixel Perfect' conçues pour maximiser la conversion.", price: "900 €" },
+                { name: "Sécurité Informatique", desc: "Audits de sécurité, tests d'intrusion et protection contre les failles.", price: "Sur devis" }
+            ]
+        };
+
+        // 2. MOTEUR DE RENDU DES PAGES
+        function loadPage(page) {
+            const contentDiv = document.getElementById('app-content');
+            
+            // Mise à jour de la navigation active
+            document.querySelectorAll('.navigation a').forEach(link => link.classList.remove('active'));
+            if(document.getElementById(`nav-${page}`)) {
+                document.getElementById(`nav-${page}`).classList.add('active');
+            }
+
+            // Génération du HTML selon la page demandée
+            let htmlContent = `<div class="page-animate">`;
+
+            if (page === 'home' || page === 'about') {
+                htmlContent += `
+                    <h2 class="page-title">${db[page].title}</h2>
+                    <div class="page-description">${db[page].content}</div>
+                `;
+            } 
+            else if (page === 'services') {
+                htmlContent += `
+                    <h2 class="page-title">Solutions Premium.</h2>
+                    <div class="page-description">Découvrez nos services sur-mesure pour propulser votre business.</div>
+                    <div class="services-grid">
+                        ${db.services.map(s => `
+                            <div class="service-card">
+                                <h4>${s.name}</h4>
+                                <p>${s.desc}</p>
+                                <p class="price">${s.price}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } 
+            else if (page === 'contact') {
+                htmlContent += `
+                    <h2 class="page-title">Parlons Projet.</h2>
+                    <div class="contact-section">
+                        <div id="form-alert"></div>
+                        <form id="contactForm" onsubmit="handleContact(event)">
+                            <div class="form-group">
+                                <label for="name">Nom complet</label>
+                                <input type="text" id="name" required placeholder="Ex: Jean Dupont">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Adresse Email</label>
+                                <input type="email" id="email" required placeholder="jean@exemple.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Sujet de votre demande</label>
+                                <input type="text" id="subject" required placeholder="Comment pouvons-nous vous aider ?">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Votre Message</label>
+                                <textarea id="message" rows="5" required placeholder="Détaillez votre projet ici..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit">
+                                <i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Envoyer la demande
+                            </button>
+                        </form>
+                    </div>
+                `;
+            }
+
+            htmlContent += `</div>`;
+            
+            // Injection fluide du contenu
+            contentDiv.innerHTML = htmlContent;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 3. GESTIONNAIRE DE FORMULAIRE SANS RECHARGEMENT
+        function handleContact(event) {
+            event.preventDefault(); // Empêche le rechargement de la page
+            
+            // Simulation d'un envoi réseau (Loading effect)
+            const btn = event.target.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+            btn.style.opacity = '0.7';
+
+            setTimeout(() => {
+                // Affichage du message de succès Premium
+                document.getElementById('form-alert').innerHTML = `
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i> Votre message a été envoyé avec succès. Nous vous contacterons rapidement.
+                    </div>
+                `;
+                event.target.reset(); // Vide le formulaire
+                btn.innerHTML = originalText;
+                btn.style.opacity = '1';
+            }, 800); // Fausse latence de 800ms pour faire réaliste
+        }
+
+        // 4. INITIALISATION AU DÉMARRAGE
+        window.onload = () => loadPage('home');
+    </script>
+</body>
+</html>
